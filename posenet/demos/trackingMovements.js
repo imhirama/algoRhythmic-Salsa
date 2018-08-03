@@ -6,20 +6,20 @@ export const videoDimensions = () => {
   return ({height: video.height, width: video.width});
 };
 
-// track shoulders (which is higher)
-export function trackShoulders(ctx, keypoints) {
-  const shoulderDif = keypoints[9].position.y - keypoints[10].position.y;
-  if (Math.abs(shoulderDif) > 15) {
+// track hands (which is higher)
+export function trackHands(ctx, keypoints) {
+  const handsDif = keypoints[9].position.y - keypoints[10].position.y;
+  if (Math.abs(handsDif) > 15) {
     // console.log(
     //   'higher shoulder:',
     //   (shoulderDif > 0)
     //     ? 'left'
     //     : 'right');
 
-    if (shoulderDif > 0) {
-    drawPoint(ctx, 300, 100, 20, 'orange');
-    } else if (shoulderDif < 0) {
-    drawPoint(ctx, 300, 500, 20, 'orange');
+    if (handsDif > 0) {
+    drawPoint(ctx, 200, 100, 20, 'orange');
+    } else if (handsDif < 0) {
+    drawPoint(ctx, 200, 500, 20, 'orange');
     }
   }
 }
@@ -93,7 +93,7 @@ export const trackJump = (ctx, keypoints) => {
   const leftFootY = keypoints[16].position.y;
   const height = videoDimensions().height;
   const width = videoDimensions().width;
-  const barHeight = height-(height/8);
+  const barHeight = height-(height/6);
 
   // console.log('rightFoot, leftFoot:', rightFootY, leftFootY);
   // console.log('barHeight', barHeight);
@@ -104,6 +104,25 @@ export const trackJump = (ctx, keypoints) => {
       'rgba(215, 180, 54, 0.93)',
       0, barHeight
     );
+  }
+};
+
+// track steps (one foot above a certain height)
+export const trackSteps = (ctx, keypoints) => {
+  const rightFootY = keypoints[15].position.y;
+  const leftFootY = keypoints[16].position.y;
+  const height = videoDimensions().height;
+  const width = videoDimensions().width;
+  const barHeight = height-(height/10);
+
+  // console.log('rightFoot, leftFoot:', rightFootY, leftFootY);
+  // console.log('barHeight', barHeight);
+
+  if ((rightFootY > barHeight) && ((rightFootY - leftFootY) > 5)) {
+    drawPoint(ctx, 400, 100, 20, 'purple');
+  }
+  if ((rightFootY > barHeight) && ((leftFootY - rightFootY) > 5)) {
+    drawPoint(ctx, 400, 500, 20, 'purple');
   }
 };
 
