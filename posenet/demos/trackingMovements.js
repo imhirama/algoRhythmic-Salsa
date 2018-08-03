@@ -27,7 +27,7 @@ export const trackInFrame = (ctx, keypoints) => {
   );
 
   if (insideFrame) {
-    drawRect(ctx, frameWidth, frameHeight, 'rgba(13, 123, 52, 0.85)', leftBound, upperBound);
+    drawFrame(ctx, frameWidth, frameHeight, 'green', 15, leftBound, upperBound);
   }
 };
 
@@ -151,5 +151,21 @@ export const trackSteps = (ctx, keypoints) => {
     drawPoint(ctx, 400, 500, 20, 'purple');
   }
 };
+
+// track spot (is a hand touching a specific spot)
+export function trackSpot(ctx, keypoints, spotX, spotY) {
+  const leftHandY = keypoints[9].position.y;
+  const rightHandY = keypoints[10].position.y;
+  const leftHandX = keypoints[9].position.x;
+  const rightHandX = keypoints[10].position.x;
+
+  drawPoint(ctx, spotX, spotY, 50, 'rgba(236, 23, 48, 0.66)', 'clear');
+
+  if (
+    ((Math.abs(leftHandX - spotX) < 50) && (Math.abs(leftHandY - spotY) < 50))
+    || ((Math.abs(rightHandX - spotX) < 50) && (Math.abs(rightHandY - spotX) < 50))
+  ) drawPoint(ctx, spotX, spotY, 50, 'rgb(236, 23, 48)');
+  ;
+}
 
 

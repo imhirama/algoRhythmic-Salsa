@@ -24,11 +24,16 @@ function toTuple({y, x}) {
   return [y, x];
 }
 
-export function drawPoint(ctx, y, x, r, color) {
+export function drawPoint(ctx, y, x, r, color, clear=false) {
   ctx.beginPath();
   ctx.arc(x, y, r, 0, 2 * Math.PI);
-  ctx.fillStyle = color;
-  ctx.fill();
+  if (clear === 'clear') {
+    ctx.strokeStyle = color;
+    ctx.stroke();
+  } else {
+    ctx.fillStyle = color;
+    ctx.fill();
+  }
 }
 
 export function drawRect(ctx, w, h, color, x=0, y=0) {
