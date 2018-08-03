@@ -36,6 +36,18 @@ export function drawRect(ctx, w, h, color, x=0, y=0) {
   ctx.fillRect(x, y, w, h);
 }
 
+export function drawClearRect(ctx, w, h, color, x=0, y=0) {
+  ctx.fillStyle = color;
+  ctx.clearRect(x, y, w, h);
+}
+export function drawFrame(ctx, w, h, color, width, x=0, y=0) {
+  ctx.beginPath();
+  ctx.lineWidth=width;
+  ctx.strokeStyle=color;
+  ctx.rect(x, y, w, h);
+  ctx.stroke();
+}
+
 export function drawBar(ctx, [ay, ax], [by, bx], color, lineWidth=15) {
   ctx.beginPath();
   ctx.moveTo(ax, ay);

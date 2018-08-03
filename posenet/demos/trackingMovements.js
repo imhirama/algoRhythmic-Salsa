@@ -1,10 +1,36 @@
-import {drawPoint, drawRect, drawBar} from './demo_util';
+import {drawPoint, drawRect, drawBar, drawFrame} from './demo_util';
 
 
 export const videoDimensions = () => {
   const video = document.getElementById('video');
   return ({height: video.height, width: video.width});
 };
+
+export const trackInFrame = (ctx, keypoints) => {
+  const width = videoDimensions().width;
+  const height = videoDimensions().height;
+  const upperBound = height/24;
+  const leftBound = width/2-width/8;
+  const frameWidth = width/4;
+  const frameHeight = height*(11/12);
+
+  drawFrame(ctx, frameWidth, frameHeight, 'white', 10, leftBound, upperBound);
+
+  // check if any of the keypoints are outside the frame
+  let insideFrame = ! keypoints.some(
+    (point) => (
+      point.position.x < leftBound
+      || point.position.x > (leftBound + frameWidth)
+      || point.position.y < upperBound
+      || point.position.y > upperBound + frameHeight
+    )
+  );
+
+  if (insideFrame) {
+    drawRect(ctx, frameWidth, frameHeight, 'rgba(13, 123, 52, 0.85)', leftBound, upperBound);
+  }
+};
+
 
 // track hands (which is higher)
 export function trackHands(ctx, keypoints) {
