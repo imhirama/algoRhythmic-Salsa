@@ -23,6 +23,10 @@ const lineWidth = 2;
 function toTuple({y, x}) {
   return [y, x];
 }
+export function drawText(ctx, text, x, y, font='30px Arial') {
+  ctx.font = font;
+  ctx.fillText(text, x, y);
+}
 
 export function drawPoint(ctx, y, x, r, color, clear=false) {
   ctx.beginPath();

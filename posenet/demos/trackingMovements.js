@@ -1,4 +1,4 @@
-import {drawPoint, drawRect, drawBar, drawFrame} from './demo_util';
+import {drawPoint, drawRect, drawBar, drawFrame, drawText} from './demo_util';
 
 
 export const videoDimensions = () => {
@@ -168,4 +168,10 @@ export function trackSpot(ctx, keypoints, spotX, spotY) {
   ;
 }
 
-
+// track spot (is a hand touching a specific spot)
+export function helloWorld(ctx) {
+  const text = 'Hello World';
+  const x = 100;
+  const y = 100;
+  drawText(ctx, text, x, y);
+}
