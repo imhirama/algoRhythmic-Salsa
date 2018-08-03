@@ -273,7 +273,7 @@ function detectPoseInRealTime(video, net) {
         // added
         trackShoulders(ctx, keypoints);
         trackFeet(ctx, keypoints);
-        trackFeetTogether(ctx, keypoints);
+        // trackFeetTogether(ctx, keypoints);
         trackJump(ctx, keypoints);
       }
     });

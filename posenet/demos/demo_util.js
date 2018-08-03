@@ -36,6 +36,16 @@ export function drawRect(ctx, w, h, color, x=0, y=0) {
   ctx.fillRect(x, y, w, h);
 }
 
+export function drawBar(ctx, [ay, ax], [by, bx], color, lineWidth=15) {
+  ctx.beginPath();
+  ctx.moveTo(ax, ay);
+  ctx.lineTo(bx, by);
+  ctx.lineWidth = lineWidth;
+  ctx.strokeStyle = color;
+  ctx.stroke();
+}
+
+
 /**
  * Draws a line on a canvas, i.e. a joint
  */

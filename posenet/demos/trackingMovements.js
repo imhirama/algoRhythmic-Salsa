@@ -1,4 +1,5 @@
-import {drawPoint, drawRect} from './demo_util';
+import {drawPoint, drawRect, drawBar} from './demo_util';
+
 
 export const videoDimensions = () => {
   const video = document.getElementById('video');
@@ -45,10 +46,10 @@ export function trackHips(ctx, keypoints) {
 export const trackFeetTogether = (ctx, keypoints) => {
   const feetDist = keypoints[15].position.x - keypoints[16].position.x;
   const width = videoDimensions().width;
-  const startRect = (width/2)-(width/8);
+  const startRect = (width/2)-(width/10);
 
   if (Math.abs(feetDist) < 25) {
-    drawRect(ctx, width/4, 500, 'rgba(51, 225, 91, 0.25)', startRect, 0);
+    drawRect(ctx, width/5, 500, 'rgba(51, 225, 91, 0.25)', startRect, 0);
   }
 };
 
@@ -56,22 +57,35 @@ export const trackFeetTogether = (ctx, keypoints) => {
 export function trackFeet(ctx, keypoints) {
   const rightFootX = keypoints[15].position.x;
   const leftFootX = keypoints[16].position.x;
-  const feetDist = rightFootX - leftFootX;
+  // const feetDist = rightFootX - leftFootX;
   const width = videoDimensions().width;
+  const height = videoDimensions().height;
   const midpoint = width/2;
 
+    // console.log('L', Math.round(leftFootX));
+    // console.log('R', Math.round(rightFootX));
+    if (
+      (leftFootX >= (midpoint-width/10))
+      && (rightFootX <= (midpoint+width/10))
+    ) {
+      drawRect(ctx, width/5, 500, 'rgba(51, 225, 91, 0.25)', (width/2)-(width/10), 0);
+      drawBar(ctx, [0, midpoint-width/10], [height, midpoint-width/10], 'black');
+      drawBar(ctx, [0, midpoint+width/10], [height, midpoint+width/10], 'black');
+    } else
 
-  if (Math.abs(feetDist) >= 25) {
-
-    if (leftFootX < (midpoint-width/8)) {
-    drawRect(ctx, midpoint-width/8, 500, 'rgba(225, 161, 51, 0.52)', 0, 0);
+    if (leftFootX < (midpoint-width/10)) {
+      drawRect(ctx, midpoint-width/10, 500, 'rgba(225, 161, 51, 0.52)', 0, 0);
+      drawBar(ctx, [0, midpoint-width/10], [height, midpoint-width/10], 'black');
+      drawBar(ctx, [0, midpoint+width/10], [height, midpoint+width/10], 'black');
     }
 
-    if (rightFootX > (midpoint+width/8)) {
-      drawRect(ctx, midpoint-25, 500, 'rgba(51, 225, 196, 0.52)', midpoint+width/8, 0);
-      };
-  }
+    if (rightFootX > (midpoint+width/10)) {
+      drawRect(ctx, midpoint+width/10, 500, 'rgba(51, 225, 196, 0.52)', midpoint+width/10, 0);
+      drawBar(ctx, [0, midpoint-width/10], [height, midpoint-width/10], 'black');
+      drawBar(ctx, [0, midpoint+width/10], [height, midpoint+width/10], 'black');
+    }
 }
+
 
 // track jump (both feet above a certain height)
 export const trackJump = (ctx, keypoints) => {
@@ -81,8 +95,8 @@ export const trackJump = (ctx, keypoints) => {
   const width = videoDimensions().width;
   const barHeight = height-(height/8);
 
-  console.log('rightFoot, leftFoot:', rightFootY, leftFootY);
-  console.log('barHeight', barHeight);
+  // console.log('rightFoot, leftFoot:', rightFootY, leftFootY);
+  // console.log('barHeight', barHeight);
 
   if ((rightFootY < barHeight) && (leftFootY < barHeight)) {
     drawRect(
