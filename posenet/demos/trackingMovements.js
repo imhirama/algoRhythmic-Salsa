@@ -1,5 +1,5 @@
 import {drawPoint, drawRect, drawBar, drawFrame, drawText} from './demo_util';
-
+import {incrementCounter} from './counter';
 
 export const videoDimensions = () => {
   const video = document.getElementById('video');
@@ -158,17 +158,23 @@ export function trackSpot(ctx, keypoints, spotX, spotY, r=50, color='rgba(236, 2
   const rightHandY = keypoints[10].position.y;
   const leftHandX = keypoints[9].position.x;
   const rightHandX = keypoints[10].position.x;
+  const noseX = keypoints[0].position.x;
+  const noseY = keypoints[0].position.y;
 
   drawPoint(ctx, spotX, spotY, r, color, 'clear');
 
   if (
     ((Math.abs(leftHandX - spotX) < r) && (Math.abs(leftHandY - spotY) < r))
     || ((Math.abs(rightHandX - spotX) < r) && (Math.abs(rightHandY - spotX) < r))
-  ) drawPoint(ctx, spotX, spotY, r, colorHover);
+    || ((Math.abs(noseX - spotX) < r) && (Math.abs(noseY - spotX) < r))
+  ) {
+    drawPoint(ctx, spotX, spotY, r, colorHover);
+    incrementCounter();
+  }
   ;
 }
 
-// track spot (is a hand touching a specific spot)
+// write text hello world
 export function helloWorld(ctx) {
   const text = 'Hello World';
   const x = 100;

@@ -19,8 +19,9 @@ import dat from 'dat.gui';
 import Stats from 'stats.js';
 import {drawKeypoints, drawSkeleton} from './demo_util';
 import {trackHands, trackFeet, trackSteps, trackFeetTogether, trackHips, videoDimensions, trackJump, trackInFrame, trackSpot, helloWorld, paint} from './trackingMovements';
+import {startCounter} from './counter';
 
-const videoWidth = 1425; // original: 600
+const videoWidth = 1000; // original: 600
 const videoHeight = 750; // original: 500
 const stats = new Stats();
 
@@ -275,7 +276,7 @@ function detectPoseInRealTime(video, net) {
         trackFeet(ctx, keypoints);
         trackJump(ctx, keypoints);
         trackInFrame(ctx, keypoints);
-        trackSpot(ctx, keypoints, 100, 100);
+        trackSpot(ctx, keypoints, 300, 300);
         helloWorld(ctx);
         paint(ctx, keypoints, 800, 300, 500, 200);
         // trackFeetTogether(ctx, keypoints);
@@ -318,6 +319,7 @@ export async function bindPage() {
   setupGui([], net);
   setupFPS();
   detectPoseInRealTime(video, net);
+  startCounter();
 }
 
 navigator.getUserMedia = navigator.getUserMedia ||
