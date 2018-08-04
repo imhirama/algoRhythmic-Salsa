@@ -94,19 +94,19 @@ export function trackFeet(ctx, keypoints) {
       (leftFootX >= (midpoint-width/10))
       && (rightFootX <= (midpoint+width/10))
     ) {
-      drawRect(ctx, width/5, 500, 'rgba(51, 225, 91, 0.25)', (width/2)-(width/10), 0);
+      drawRect(ctx, width/5, height, 'rgba(51, 225, 91, 0.25)', (width/2)-(width/10), 0);
       drawBar(ctx, [0, midpoint-width/10], [height, midpoint-width/10], 'black');
       drawBar(ctx, [0, midpoint+width/10], [height, midpoint+width/10], 'black');
     } else
 
     if (leftFootX < (midpoint-width/10)) {
-      drawRect(ctx, midpoint-width/10, 500, 'rgba(225, 161, 51, 0.52)', 0, 0);
+      drawRect(ctx, midpoint-width/10, height, 'rgba(225, 161, 51, 0.52)', 0, 0);
       drawBar(ctx, [0, midpoint-width/10], [height, midpoint-width/10], 'black');
       drawBar(ctx, [0, midpoint+width/10], [height, midpoint+width/10], 'black');
     }
 
     if (rightFootX > (midpoint+width/10)) {
-      drawRect(ctx, midpoint+width/10, 500, 'rgba(51, 225, 196, 0.52)', midpoint+width/10, 0);
+      drawRect(ctx, midpoint+width/10, height, 'rgba(51, 225, 196, 0.52)', midpoint+width/10, 0);
       drawBar(ctx, [0, midpoint-width/10], [height, midpoint-width/10], 'black');
       drawBar(ctx, [0, midpoint+width/10], [height, midpoint+width/10], 'black');
     }

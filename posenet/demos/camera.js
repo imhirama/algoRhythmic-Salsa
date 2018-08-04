@@ -20,8 +20,8 @@ import Stats from 'stats.js';
 import {drawKeypoints, drawSkeleton} from './demo_util';
 import {trackHands, trackFeet, trackSteps, trackFeetTogether, trackHips, videoDimensions, trackJump, trackInFrame, trackSpot, helloWorld} from './trackingMovements';
 
-const videoWidth = 600;
-const videoHeight = 500;
+const videoWidth = 1425; // original: 600
+const videoHeight = 750; // original: 500
 const stats = new Stats();
 
 function isAndroid() {
