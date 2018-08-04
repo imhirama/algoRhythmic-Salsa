@@ -111,7 +111,7 @@ function setupGui(cameras, net) {
   }
 
   const gui = new dat.GUI({width: 300});
-
+  gui.destroy(); // added
   // The single-pose algorithm is faster and simpler but requires only one
   // person to be in the frame or results will be innaccurate. Multi-pose works
   // for more than 1 person
@@ -155,7 +155,7 @@ function setupGui(cameras, net) {
   // nms Radius: controls the minimum distance between poses that are returned
   // defaults to 20, which is probably fine for most use cases
   multi.add(guiState.multiPoseDetection, 'nmsRadius').min(0.0).max(40.0);
-  multi.open();
+  single.open(); // changed from multi.open()
 
   let output = gui.addFolder('Output');
   output.add(guiState.output, 'showVideo');
