@@ -153,18 +153,18 @@ export const trackSteps = (ctx, keypoints) => {
 };
 
 // track spot (is a hand touching a specific spot)
-export function trackSpot(ctx, keypoints, spotX, spotY) {
+export function trackSpot(ctx, keypoints, spotX, spotY, r=50, color='rgba(236, 23, 48, 0.66)', colorHover='rgb(236, 23, 48)') {
   const leftHandY = keypoints[9].position.y;
   const rightHandY = keypoints[10].position.y;
   const leftHandX = keypoints[9].position.x;
   const rightHandX = keypoints[10].position.x;
 
-  drawPoint(ctx, spotX, spotY, 50, 'rgba(236, 23, 48, 0.66)', 'clear');
+  drawPoint(ctx, spotX, spotY, r, color, 'clear');
 
   if (
-    ((Math.abs(leftHandX - spotX) < 50) && (Math.abs(leftHandY - spotY) < 50))
-    || ((Math.abs(rightHandX - spotX) < 50) && (Math.abs(rightHandY - spotX) < 50))
-  ) drawPoint(ctx, spotX, spotY, 50, 'rgb(236, 23, 48)');
+    ((Math.abs(leftHandX - spotX) < r) && (Math.abs(leftHandY - spotY) < r))
+    || ((Math.abs(rightHandX - spotX) < r) && (Math.abs(rightHandY - spotX) < r))
+  ) drawPoint(ctx, spotX, spotY, r, colorHover);
   ;
 }
 
@@ -174,4 +174,16 @@ export function helloWorld(ctx) {
   const x = 100;
   const y = 100;
   drawText(ctx, text, x, y);
+}
+
+// paint with right hand in a set rectangle
+export function paint(ctx, keypoints, x, y, w, h) {
+  drawFrame(ctx, w, h, 'yellow', 5, x, y);
+
+  const rightHandY = keypoints[10].position.y;
+  const rightHandX = keypoints[10].position.x;
+
+  if (rightHandX > x && rightHandX < (x+w) && rightHandY > y && rightHandY < (y+h)) {
+    drawPoint(ctx, rightHandY, rightHandX, 20, 'purple');
+  }
 }
