@@ -34,24 +34,33 @@
         Loading the model...
     </div>
 
-    <div>
-        <h3>Counter:</h3>
-        <h1 id="counter">'loading'</h1>
+    <div id=top>
+        <div id=titleText></div>
     </div>
 
-    <div id='main' style='display:none'>
-        <video id="video" playsinline style=" -moz-transform: scaleX(-1);
-        -o-transform: scaleX(-1);
-        -webkit-transform: scaleX(-1);
-        transform: scaleX(-1);
-        display: none;
-        ">
+    <div id=middle>
+        <div id='main' style='display:none'>
+            <video id="video" playsinline style=" -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            display: none;
+            ">
         </video>
         <canvas id="output" />
+        </div>
+        <div id=rightSide>
+            <div id=rightSideText></div>
+            <div>
+                <h3>Score:</h3>
+                <h1 id="counter">loading</h1>
+            </div>
+        </div>
     </div>
+
     <div class="footer">
         <div class="footer-text">
-            <p>
+                <p>
                 Created by Isabel Hirama at Grace Hopper Academy for Stackathon, Fullstack Academy's weekend hackathon.
             </p>
         </div>

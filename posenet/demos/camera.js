@@ -19,7 +19,8 @@ import dat from 'dat.gui';
 import Stats from 'stats.js';
 import {drawKeypoints, drawSkeleton} from './demo_util';
 import {trackHands, trackFeet, trackSteps, trackFeetTogether, trackHips, videoDimensions, trackJump, trackInFrame, trackSpot, helloWorld, paint} from './trackingMovements';
-import {startCounter} from './counter';
+import {startCounter, getScore} from './counter';
+import levels, {getCurrentLevel} from './levels';
 
 const videoWidth = 1000; // original: 600
 const videoHeight = 750; // original: 500
@@ -186,10 +187,10 @@ function setupGui(cameras, net) {
 /**
  * Sets up a frames per second panel on the top-left of the window
  */
-function setupFPS() {
-  stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-  document.body.appendChild(stats.dom);
-}
+// function setupFPS() {
+//   stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+//   document.body.appendChild(stats.dom);
+// }
 
 /**
  * Feeds an image to posenet to estimate poses - this is where the magic
@@ -272,15 +273,14 @@ function detectPoseInRealTime(video, net) {
           drawSkeleton(keypoints, minPartConfidence, ctx);
         }
         // added
-        trackHands(ctx, keypoints);
-        trackFeet(ctx, keypoints);
-        trackJump(ctx, keypoints);
-        trackInFrame(ctx, keypoints);
+        // trackHands(ctx, keypoints);
+        // trackFeet(ctx, keypoints);
+        // trackJump(ctx, keypoints);
+        // trackInFrame(ctx, keypoints);
         trackSpot(ctx, keypoints, 300, 300);
-        helloWorld(ctx);
-        paint(ctx, keypoints, 800, 300, 500, 200);
-        // trackFeetTogether(ctx, keypoints);
-        // trackSteps(ctx, keypoints);
+        // helloWorld(ctx);
+        // paint(ctx, keypoints, 800, 300, 500, 200);
+        levels(getCurrentLevel());
       }
     });
 
@@ -317,7 +317,7 @@ export async function bindPage() {
   }
 
   setupGui([], net);
-  setupFPS();
+  // setupFPS();
   detectPoseInRealTime(video, net);
   startCounter();
 }

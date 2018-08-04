@@ -10,3 +10,6 @@ export const incrementCounter = () => {
   counter.innerHTML++;
 };
 
+export const getScore = () => {
+  return document.getElementById('counter').innerHTML;
+};
