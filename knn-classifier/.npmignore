@@ -11,4 +11,3 @@ dist/**/*.js.map
 .npmignore
 tslint.json
 yarn.lock
-added_node_modules/

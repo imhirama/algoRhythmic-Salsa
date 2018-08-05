@@ -13,6 +13,7 @@
     "@tensorflow/tfjs": "0.11.4",
     "express": "^4.16.3",
     "stats.js": "^0.17.0",
+    "babel-plugin-transform-runtime": "~6.23.0",
     "parcel-bundler": "~1.6.2"
   },
   "scripts": {
@@ -23,7 +24,6 @@
     "lint": "eslint ."
   },
   "devDependencies": {
-    "babel-plugin-transform-runtime": "~6.23.0",
     "babel-polyfill": "~6.26.0",
     "babel-preset-env": "~1.6.1",
     "babel-preset-es2017": "^6.24.1",
