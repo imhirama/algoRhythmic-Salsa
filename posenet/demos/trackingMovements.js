@@ -95,15 +95,30 @@ export function feetPosition(ctx, keypoints) {
       (leftFootX >= (midpoint-width/10))
       && (rightFootX <= (midpoint+width/10))
     ) {
-      return 'center';
+      return {
+        position: 'center',
+        colorBlock: ()=>{
+          drawRect(ctx, width/5, height, 'rgba(51, 225, 91, 0.25)', (width/2)-(width/10), 0);
+        },
+      };
     } else
 
     if ((leftFootX < (midpoint-width/10)) && (rightFootX <= (midpoint+width/10))) {
-      return 'left';
+      return {
+        position: 'left',
+        colorBlock: ()=>{
+          drawRect(ctx, midpoint-width/10, height, 'rgba(225, 161, 51, 0.52)', 0, 0);
+        },
+      };
     } else
 
     if ((rightFootX > (midpoint+width/10)) && (leftFootX >= (midpoint-width/10))) {
-      return 'right';
+      return {
+        position: 'right',
+        colorBlock: ()=>{
+          drawRect(ctx, midpoint+width/10, height, 'rgba(51, 225, 196, 0.52)', midpoint+width/10, 0);
+        },
+      };
     } else return false;
 }
 
