@@ -29,11 +29,12 @@ export function drawText(ctx, text, x, y, color='white', font='30px Arial') {
   ctx.fillText(text, x, y);
 }
 
-export function drawPoint(ctx, y, x, r, color, clear=false) {
+export function drawPoint(ctx, x, y, r, color, clear=false, width=10) {
   ctx.beginPath();
   ctx.arc(x, y, r, 0, 2 * Math.PI);
   if (clear === 'clear') {
     ctx.strokeStyle = color;
+    ctx.lineWidth=width;
     ctx.stroke();
   } else {
     ctx.fillStyle = color;

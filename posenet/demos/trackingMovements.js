@@ -166,8 +166,8 @@ export function trackSpot(ctx, keypoints, spotX, spotY, r=50, color='rgba(236, 2
 
   if (
     ((Math.abs(leftHandX - spotX) < r) && (Math.abs(leftHandY - spotY) < r))
-    || ((Math.abs(rightHandX - spotX) < r) && (Math.abs(rightHandY - spotX) < r))
-    || ((Math.abs(noseX - spotX) < r) && (Math.abs(noseY - spotX) < r))
+    || ((Math.abs(rightHandX - spotX) < r) && (Math.abs(rightHandY - spotY) < r))
+    || ((Math.abs(noseX - spotX) < r) && (Math.abs(noseY - spotY) < r))
   ) {
     drawPoint(ctx, spotX, spotY, r, colorHover);
     incrementScore();

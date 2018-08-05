@@ -47,7 +47,8 @@ export function level2(ctx, keypoints) {
   levelTitle(ctx, 2, 'Turn and face the red dot. Reach out and touch it.');
 
   // objective: touch the spot
-  track.trackSpot(ctx, keypoints, width/4, height*(3/4), 50, 'rgba(3, 226, 251, 0.53)', 'rgba(0, 183, 204, 0.93)');
+  track.trackSpot(ctx, keypoints, 400, 500, 50, 'rgba(3, 226, 251, 0.53)', 'rgba(0, 183, 204, 0.93)');
+  // track.trackSpot(ctx, keypoints, width/4, height*(3/4), 50, 'rgba(3, 226, 251, 0.53)', 'rgba(0, 183, 204, 0.93)');
 
 };
 
