@@ -1,11 +1,12 @@
 import {setTitle, setRightSideText} from './outerText';
 import * as counter from './counter';
-import {drawText, drawRect} from './demo_util';
+import {drawText, drawRect, drawBar, drawPoint, drawFrame} from './demo_util';
 import * as track from './trackingMovements';
 
 const levelFunctions = {
   1: level1,
   2: level2,
+  3: level3,
 };
 
 
@@ -47,8 +48,25 @@ export function level2(ctx, keypoints) {
   levelTitle(ctx, 2, 'Turn and face the red dot. Reach out and touch it.');
 
   // objective: touch the spot
-  track.trackSpot(ctx, keypoints, 400, 500, 50, 'rgba(3, 226, 251, 0.53)', 'rgba(0, 183, 204, 0.93)');
-  // track.trackSpot(ctx, keypoints, width/4, height*(3/4), 50, 'rgba(3, 226, 251, 0.53)', 'rgba(0, 183, 204, 0.93)');
-
+  track.trackSpot(ctx, keypoints, width/4, height*(3/4), 50, 'rgba(3, 226, 251, 0.53)', 'rgba(0, 183, 204, 0.93)');
 };
 
+export function level3(ctx, keypoints) {
+  setTitle('Level 3');
+  setRightSideText('Step to the left');
+  levelTitle(ctx, 3, 'Step to the left');
+
+  const {height, width} = track.videoDimensions();
+  const midpoint = width/2;
+  const feetPosition = track.feetPosition(ctx, keypoints);
+  console.log(feetPosition);
+
+  drawBar(ctx, [0, midpoint-width/10], [height, midpoint-width/10], 'black');
+  drawBar(ctx, [0, midpoint+width/10], [height, midpoint+width/10], 'black');
+
+  // objective: follow pattern of left, center, left, center
+  const goal = 'left';
+  if (feetPosition === goal) {
+    counter.incrementScore();
+  }
+}

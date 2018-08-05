@@ -80,6 +80,33 @@ export const trackFeetTogether = (ctx, keypoints) => {
   }
 };
 
+// return whether feet are center, one foot is left, one foot is right, or none
+export function feetPosition(ctx, keypoints) {
+  const rightFootX = keypoints[15].position.x;
+  const leftFootX = keypoints[16].position.x;
+  // const feetDist = rightFootX - leftFootX;
+  const width = videoDimensions().width;
+  const height = videoDimensions().height;
+  const midpoint = width/2;
+
+    // console.log('L', Math.round(leftFootX));
+    // console.log('R', Math.round(rightFootX));
+    if (
+      (leftFootX >= (midpoint-width/10))
+      && (rightFootX <= (midpoint+width/10))
+    ) {
+      return 'center';
+    } else
+
+    if ((leftFootX < (midpoint-width/10)) && (rightFootX <= (midpoint+width/10))) {
+      return 'left';
+    } else
+
+    if ((rightFootX > (midpoint+width/10)) && (leftFootX >= (midpoint-width/10))) {
+      return 'right';
+    } else return false;
+}
+
 // track feet left or right side of screen
 export function trackFeet(ctx, keypoints) {
   const rightFootX = keypoints[15].position.x;
