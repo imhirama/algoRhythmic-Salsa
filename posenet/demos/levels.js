@@ -7,7 +7,6 @@ const levelFunctions = {
   1: level1,
   2: level2,
   3: level3,
-  4: level4,
 };
 
 
@@ -60,34 +59,14 @@ export function level3(ctx, keypoints) {
   const {height, width} = track.videoDimensions();
   const midpoint = width/2;
   const feetPosition = track.feetPosition(ctx, keypoints);
+  console.log(feetPosition);
 
   drawBar(ctx, [0, midpoint-width/10], [height, midpoint-width/10], 'black');
   drawBar(ctx, [0, midpoint+width/10], [height, midpoint+width/10], 'black');
 
   // objective: follow pattern of left, center, left, center
   const goal = 'left';
-  if (feetPosition.position === goal) {
-    feetPosition.colorBlock();
-    counter.incrementScore();
-  }
-}
-
-export function level4(ctx, keypoints) {
-  setTitle('Level 4');
-  setRightSideText('Step to the right');
-  levelTitle(ctx, 4, 'Step to the right');
-
-  const {height, width} = track.videoDimensions();
-  const midpoint = width/2;
-  const feetPosition = track.feetPosition(ctx, keypoints);
-
-  drawBar(ctx, [0, midpoint-width/10], [height, midpoint-width/10], 'black');
-  drawBar(ctx, [0, midpoint+width/10], [height, midpoint+width/10], 'black');
-
-  // objective: follow pattern of right, center, right, center
-  const goal = 'right';
-  if (feetPosition.position === goal) {
-    feetPosition.colorBlock();
+  if (feetPosition === goal) {
     counter.incrementScore();
   }
 }
