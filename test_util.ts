@@ -29,8 +29,8 @@ export function runTests(jasmine_util): void {
     throw e;
   });
 
-  jasmine_util.setTestEnvs(
-      [{name: 'node', factory: jasmine_util.CPU_FACTORY, features: {}}]);
+  // jasmine_util.setTestEnvs(
+  //     [{name: 'node', factory: jasmine_util.CPU_FACTORY, features: {}}]);
 
   const runner = new jasmineCtor();
   runner.loadConfig({spec_files: ['**/*_test.ts']});
