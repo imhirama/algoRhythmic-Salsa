@@ -28,7 +28,7 @@ process.on('unhandledRejection', e => {
 const dir = '.';
 const dirs = fs.readdirSync(dir)
                  .filter(f => fs.statSync(join(dir, f)).isDirectory())
-                 .filter(f => !f.startsWith('.') && f !== 'node_modules');
+                //  .filter(f => !f.startsWith('.') && f !== 'node_modules');
 
 dirs.forEach(dir => {
   console.log(`~~~~~~~~~~~~ Building ${dir} ~~~~~~~~~~~~`);
