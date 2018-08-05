@@ -34,13 +34,20 @@ export function level1(ctx, keypoints) {
   setTitle('Level 1');
   setRightSideText('Stand completely within the white box');
   levelTitle(ctx, 1, 'Stand completely within the white box');
+
+  // objective: stay in the frame
   track.trackInFrame(ctx, keypoints);
 };
 
 export function level2(ctx, keypoints) {
+  const {height, width} = track.videoDimensions();
+
   setTitle('Level 2');
   setRightSideText('Turn to face the red dot, then reach out and touch it. Stay facing this direction.');
   levelTitle(ctx, 2, 'Turn and face the red dot. Reach out and touch it.');
+
+  // objective: touch the spot
+  track.trackSpot(ctx, keypoints, width/4, height*(3/4), 50, 'rgba(3, 226, 251, 0.53)', 'rgba(0, 183, 204, 0.93)');
 
 };
 
