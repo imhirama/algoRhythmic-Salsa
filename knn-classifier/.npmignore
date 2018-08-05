@@ -4,7 +4,6 @@ demo/
 scripts/
 src/
 coverage/
-node_modules/
 karma.conf.js
 *.tgz
 dist/**/*.js.map
@@ -12,3 +11,4 @@ dist/**/*.js.map
 .npmignore
 tslint.json
 yarn.lock
+added_node_modules/
