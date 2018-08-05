@@ -1,5 +1,5 @@
 import {drawPoint, drawRect, drawBar, drawFrame, drawText} from './demo_util';
-import {incrementCounter} from './counter';
+import {incrementScore} from './counter';
 
 export const videoDimensions = () => {
   const video = document.getElementById('video');
@@ -28,6 +28,7 @@ export const trackInFrame = (ctx, keypoints) => {
 
   if (insideFrame) {
     drawFrame(ctx, frameWidth, frameHeight, 'green', 15, leftBound, upperBound);
+    incrementScore();
   }
 };
 
@@ -169,7 +170,7 @@ export function trackSpot(ctx, keypoints, spotX, spotY, r=50, color='rgba(236, 2
     || ((Math.abs(noseX - spotX) < r) && (Math.abs(noseY - spotX) < r))
   ) {
     drawPoint(ctx, spotX, spotY, r, colorHover);
-    incrementCounter();
+    incrementScore();
   }
   ;
 }

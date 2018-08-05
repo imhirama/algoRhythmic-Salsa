@@ -1,21 +1,19 @@
-export const startCounter = () => {
-  console.log('counting');
-  const counter = document.getElementById('counter');
-  counter.innerHTML=0;
+
+export const resetScore = () => {
+  const score = document.getElementById('score');
+  score.innerHTML=0;
 };
 
-export const incrementCounter = () => {
-  console.log('counting');
-  const counter = document.getElementById('counter');
-  counter.innerHTML++;
+export const incrementScore = () => {
+  const score = document.getElementById('score');
+  score.innerHTML++;
 };
 
 export const getScore = () => {
-  return document.getElementById('counter').innerHTML;
+  return document.getElementById('score').innerHTML;
 };
 
 export const startTimer = () => {
-  console.log('timing');
   const timer = document.getElementById('timer');
   setInterval(function() {
     timer.innerHTML++
