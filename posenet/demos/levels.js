@@ -8,6 +8,7 @@ const levelFunctions = {
   2: level2,
   3: level3,
   4: level4,
+  5: level5,
 };
 
 
