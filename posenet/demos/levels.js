@@ -2,8 +2,10 @@ import {setTitle, setRightSideText} from './outerText';
 import * as counter from './counter';
 import {drawText, drawRect, drawBar, drawPoint, drawFrame} from './demo_util';
 import * as track from './trackingMovements';
+import * as titles from './titles';
 
 const levelFunctions = {
+  0: level0,
   1: level1,
   2: level2,
   3: level3,
@@ -19,24 +21,19 @@ export default function levels(levelNum, ctx, keypoints) {
 
 export function getCurrentLevel() {
   console.log(counter.getScore());
-  return Math.ceil((counter.getScore()+1)/100);
+  return Math.ceil((counter.getScore())/100);
 }
 
-export function levelTitle(ctx, levelNum, instructions) {
-  const {height, width} = track.videoDimensions();
-
-  drawRect(ctx, width/3, height/8, 'rgba(28, 25, 22, 0.75)', 0, height*(1/15));
-  drawRect(ctx, width/3 * ((counter.getScore()%10)/10), height/8, 'rgba(40, 170, 8, 0.84)', 0, height*(1/15));
-
-
-  drawText(ctx, `Level ${levelNum}`, 20, height*(1/15)+height/10, 'white', '90px Raleway');
-  // drawText(ctx, instructions, 50, height/2 + height/4, 'white', '35px Raleway');
+export function level0(ctx, keypoint) {
+  titles.darkBackground(ctx);
+  titles.screenTitle(ctx, 100, 150, 'CHOOSE LEARNING MODE');
+  titles.screenText(ctx, 500, 700, 'JUMP TO BEGIN');
 }
 
 export function level1(ctx, keypoints) {
   setTitle('Level 1');
   setRightSideText('Stand completely within the white box');
-  levelTitle(ctx, 1, 'Stand completely within the white box');
+  levels.levelTitle(ctx, 1, 'Stand completely within the white box');
 
   // objective: stay in the frame
   track.trackInFrame(ctx, keypoints);
@@ -56,7 +53,7 @@ export function level2(ctx, keypoints) {
 export function level3(ctx, keypoints) {
   setTitle('Level 3');
   setRightSideText('Step to the left');
-  levelTitle(ctx, 3, 'Step to the left');
+  levels.levelTitle(ctx, 3, 'Step to the left');
 
   const {height, width} = track.videoDimensions();
   const midpoint = width/2;
@@ -76,7 +73,7 @@ export function level3(ctx, keypoints) {
 export function level4(ctx, keypoints) {
   setTitle('Level 4');
   setRightSideText('Step to the right');
-  levelTitle(ctx, 4, 'Step to the right');
+  levels.levelTitle(ctx, 4, 'Step to the right');
 
   const {height, width} = track.videoDimensions();
   const midpoint = width/2;

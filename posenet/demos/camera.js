@@ -22,7 +22,7 @@ import {trackHands, trackFeet, trackSteps, trackFeetTogether, trackHips, videoDi
 import {resetScore, startTimer, getScore, getTime} from './counter';
 import levels, {getCurrentLevel} from './levels';
 
-const videoWidth = 1000; // original: 600
+const videoWidth = 1400; // original: 600
 const videoHeight = 750; // original: 500
 const stats = new Stats();
 

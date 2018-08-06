@@ -13,13 +13,17 @@ export function levelTitle(ctx, levelNum, instructions) {
 
 
   drawText(ctx, `Level ${levelNum}`, 20, height*(1/15)+height/10, 'white', '90px Raleway');
-  // drawText(ctx, instructions, 50, height/2 + height/4, 'white', '35px Raleway');
 }
 
-export function screenText(ctx, x, y, text, font='35px Muli', color='white') {
+export function screenTitle(ctx, x, y, text, font='100px Poiret One', color='white') {
   drawText(ctx, text, x, y, color, font);
 }
 
-export function darkBackground(ctx, color='rgba(4, 2, 0, 0.84)'){
+export function screenText(ctx, x, y, text, font='50px Raleway', color='white') {
+  drawText(ctx, text, x, y, color, font);
+}
 
+export function darkBackground(ctx, color = 'rgba(4, 2, 0, 0.84)') {
+  const {height, width} = track.videoDimensions();
+  drawRect(ctx, width, height, color);
 }
