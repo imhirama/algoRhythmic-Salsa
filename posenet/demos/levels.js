@@ -7,7 +7,7 @@ import * as titles from './titles';
 const levelFunctions = {
   0: level0,
   999: learningMode,
-  1: level1Title,
+  1: level0, // level1Title,
   2: level1,
   3: level2Title,
   4: level2,
@@ -39,10 +39,24 @@ export function learningMode(ctx, keypoint) {
   counter.incrementScore();
 }
 
-export function level0(ctx, keypoint) {
-  titles.darkBackground(ctx);
+export function level0(ctx, keypoints) {
+  counter.resetScore();
+  track.trackFeet(ctx, keypoints);
+  const {height, width} = track.videoDimensions();
+  drawPoint(ctx, width*Math.random(), height*Math.random(), 100*Math.random(), `rgba(${225*Math.random()}, ${225*Math.random()}, ${225*Math.random()}, ${1*Math.random()})`);
+  drawPoint(ctx, width*Math.random(), height*Math.random(), 100*Math.random(), `rgba(${225*Math.random()}, ${225*Math.random()}, ${225*Math.random()}, ${1*Math.random()})`);
+  drawPoint(ctx, width*Math.random(), height*Math.random(), 100*Math.random(), `rgba(${225*Math.random()}, ${225*Math.random()}, ${225*Math.random()}, ${1*Math.random()})`);
+  drawPoint(ctx, width*Math.random(), height*Math.random(), 100*Math.random(), `rgba(${225*Math.random()}, ${225*Math.random()}, ${225*Math.random()}, ${1*Math.random()})`);
+  drawPoint(ctx, width*Math.random(), height*Math.random(), 100*Math.random(), `rgba(${225*Math.random()}, ${225*Math.random()}, ${225*Math.random()}, ${1*Math.random()})`);
+  drawPoint(ctx, width*Math.random(), height*Math.random(), 100*Math.random(), `rgba(${225*Math.random()}, ${225*Math.random()}, ${225*Math.random()}, ${1*Math.random()})`);
+  drawPoint(ctx, width*Math.random(), height*Math.random(), 100*Math.random(), `rgba(${225*Math.random()}, ${225*Math.random()}, ${225*Math.random()}, ${1*Math.random()})`);
+  drawPoint(ctx, width*Math.random(), height*Math.random(), 100*Math.random(), `rgba(${225*Math.random()}, ${225*Math.random()}, ${225*Math.random()}, ${1*Math.random()})`);
+  drawPoint(ctx, width*Math.random(), height*Math.random(), 100*Math.random(), `rgba(${225*Math.random()}, ${225*Math.random()}, ${225*Math.random()}, ${1*Math.random()})`);
+  drawPoint(ctx, width*Math.random(), height*Math.random(), 100*Math.random(), `rgba(${225*Math.random()}, ${225*Math.random()}, ${225*Math.random()}, ${1*Math.random()})`);
+  drawPoint(ctx, width*Math.random(), height*Math.random(), 100*Math.random(), `rgba(${225*Math.random()}, ${225*Math.random()}, ${225*Math.random()}, ${1*Math.random()})`);
+  drawPoint(ctx, width*Math.random(), height*Math.random(), 100*Math.random(), `rgba(${225*Math.random()}, ${225*Math.random()}, ${225*Math.random()}, ${1*Math.random()})`);
 
-  counter.incrementScore();
+  // counter.incrementScore();
 }
 
 export function partyModeTitle(ctx, keypoint) {
@@ -104,7 +118,7 @@ export function level2(ctx, keypoints) {
   titles.levelTitle(ctx, 2, 'Turn and face the red dot. Reach out and touch it.');
 
   // objective: touch the spot
-  track.trackSpot(ctx, keypoints, width/4, height*(3/4), 50, 'rgba(3, 226, 251, 0.53)', 'rgba(0, 183, 204, 0.93)');
+  track.trackSpot(ctx, keypoints, width/4, height/2, 60);
 };
 
 export function level3(ctx, keypoints) {

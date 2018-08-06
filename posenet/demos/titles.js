@@ -27,3 +27,16 @@ export function darkBackground(ctx, color = 'rgba(4, 2, 0, 0.84)') {
   const {height, width} = track.videoDimensions();
   drawRect(ctx, width, height, color);
 }
+
+export function randomColors() {
+  const c1 = 225*Math.random();
+  const c2 = 225*Math.random();
+  const c3 = 225*Math.random();
+  const c4 = 1*Math.random();
+  const c5 = 1*Math.random();
+
+  const color1 = `rgba(${c1}, ${c2}, ${c3}, ${c4})`;
+  const color2 = `rgba(${c1}, ${c2}, ${c3}, ${c5})`;
+
+  return {color1, color2};
+}
