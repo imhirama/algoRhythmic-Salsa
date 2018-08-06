@@ -5,11 +5,11 @@ import * as track from './trackingMovements';
 import * as titles from './titles';
 
 const levelFunctions = {
-  0: level0,
-  1: level1,
-  2: level2,
-  3: level3,
-  4: level4,
+  0: learningMode,
+  1: level1Title,
+  2: level1,
+  3: level2Title,
+  4: level2,
   // 5: level5,
 };
 
@@ -21,19 +21,48 @@ export default function levels(levelNum, ctx, keypoints) {
 
 export function getCurrentLevel() {
   console.log(counter.getScore());
-  return Math.ceil((counter.getScore())/100);
+  return Math.ceil((counter.getScore())/10);
+}
+
+export function learningMode(ctx, keypoint) {
+  titles.darkBackground(ctx);
+  titles.screenTitle(ctx, 100, 150, 'CHOOSE LEARNING MODE', 100);
+  titles.screenText(ctx, 500, 700, 'JUMP TO BEGIN', 50);
+
+  counter.incrementScore();
 }
 
 export function level0(ctx, keypoint) {
   titles.darkBackground(ctx);
-  titles.screenTitle(ctx, 100, 150, 'CHOOSE LEARNING MODE');
-  titles.screenText(ctx, 500, 700, 'JUMP TO BEGIN');
+  titles.screenTitle(ctx, 350, 300, 'LEVEL TWO');
+  titles.screenText(ctx, 400, 475, 'Turn left 90 degrees.', 65);
+  titles.screenText(ctx, 290, 555, 'Reach out and touch the red dot.');
+  titles.screenText(ctx, 220, 675, 'Remain facing this direction for all other levels!', 45);
+
+  counter.incrementScore();
+}
+export function level2Title(ctx, keypoint) {
+  titles.darkBackground(ctx);
+  titles.screenTitle(ctx, 350, 300, 'LEVEL TWO');
+  titles.screenText(ctx, 400, 475, 'Turn left 90 degrees.', 65);
+  titles.screenText(ctx, 290, 555, 'Reach out and touch the red dot.');
+  titles.screenText(ctx, 220, 675, 'Remain facing this direction for all other levels!', 45);
+
+  counter.incrementScore();
+}
+
+export function level1Title(ctx, keypoint) {
+  titles.darkBackground(ctx);
+  titles.screenTitle(ctx, 350, 400, 'LEVEL ONE');
+  titles.screenText(ctx, 200, 600, 'Stand completely within the white box.');
+
+  counter.incrementScore();
 }
 
 export function level1(ctx, keypoints) {
   setTitle('Level 1');
   setRightSideText('Stand completely within the white box');
-  levels.levelTitle(ctx, 1, 'Stand completely within the white box');
+  titles.levelTitle(ctx, 1, 'Stand completely within the white box');
 
   // objective: stay in the frame
   track.trackInFrame(ctx, keypoints);
@@ -44,7 +73,7 @@ export function level2(ctx, keypoints) {
 
   setTitle('Level 2');
   setRightSideText('Turn to face the red dot, then reach out and touch it. Stay facing this direction.');
-  levelTitle(ctx, 2, 'Turn and face the red dot. Reach out and touch it.');
+  titles.levelTitle(ctx, 2, 'Turn and face the red dot. Reach out and touch it.');
 
   // objective: touch the spot
   track.trackSpot(ctx, keypoints, width/4, height*(3/4), 50, 'rgba(3, 226, 251, 0.53)', 'rgba(0, 183, 204, 0.93)');

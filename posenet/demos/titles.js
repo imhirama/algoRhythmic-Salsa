@@ -15,12 +15,12 @@ export function levelTitle(ctx, levelNum, instructions) {
   drawText(ctx, `Level ${levelNum}`, 20, height*(1/15)+height/10, 'white', '90px Raleway');
 }
 
-export function screenTitle(ctx, x, y, text, font='100px Poiret One', color='white') {
-  drawText(ctx, text, x, y, color, font);
+export function screenTitle(ctx, x, y, text, size=150, font='Poiret One', color='white') {
+  drawText(ctx, text, x, y, color, `${size}px ${font}`);
 }
 
-export function screenText(ctx, x, y, text, font='50px Raleway', color='white') {
-  drawText(ctx, text, x, y, color, font);
+export function screenText(ctx, x, y, text, size=55, font='Raleway', color='white') {
+  drawText(ctx, text, x, y, color, `${size}px ${font}`);
 }
 
 export function darkBackground(ctx, color = 'rgba(4, 2, 0, 0.84)') {
