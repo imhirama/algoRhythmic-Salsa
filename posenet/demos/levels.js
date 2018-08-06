@@ -5,7 +5,7 @@ import * as track from './trackingMovements';
 import * as titles from './titles';
 
 const levelFunctions = {
-  // 0: level0,
+  0: level0,
   999: learningMode,
   1: level1Title,
   2: level1,
@@ -39,15 +39,11 @@ export function learningMode(ctx, keypoint) {
   counter.incrementScore();
 }
 
-// export function level0(ctx, keypoint) {
-//   titles.darkBackground(ctx);
-//   titles.screenTitle(ctx, 350, 300, 'LEVEL TWO');
-//   titles.screenText(ctx, 400, 475, 'Turn left 90 degrees.', 65);
-//   titles.screenText(ctx, 290, 555, 'Reach out and touch the red dot.');
-//   titles.screenText(ctx, 320, 675, 'Face this direction for all other levels!', 45);
+export function level0(ctx, keypoint) {
+  titles.darkBackground(ctx);
 
-//   counter.incrementScore();
-// }
+  counter.incrementScore();
+}
 
 export function partyModeTitle(ctx, keypoint) {
   titles.darkBackground(ctx);
