@@ -21,6 +21,8 @@ import {drawKeypoints, drawSkeleton} from './demo_util';
 import {trackHands, trackFeet, trackSteps, trackFeetTogether, trackHips, videoDimensions, trackJump, trackInFrame, trackSpot, helloWorld, paint} from './trackingMovements';
 import {resetScore, startTimer, getScore, getTime} from './counter';
 import levels, {getCurrentLevel} from './levels';
+import Sound from './sound';
+
 
 const videoWidth = 1425; // original: 600
 const videoHeight = 750; // original: 500

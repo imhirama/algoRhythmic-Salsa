@@ -167,7 +167,7 @@ export const trackJump = (ctx, keypoints) => {
       'rgba(215, 180, 54, 0.93)',
       0, barHeight
     );
-    incrementScore(1);
+    incrementScore(.3);
   }
 };
 

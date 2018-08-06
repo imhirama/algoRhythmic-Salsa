@@ -5,19 +5,20 @@ import * as track from './trackingMovements';
 import * as titles from './titles';
 
 const levelFunctions = {
-  0: learningMode,
-  1: level1Title,
-  2: level1,
-  3: level2Title,
-  4: level2,
-  5: level3Title,
-  6: level3,
-  7: level4Title,
-  8: level4,
-  9: level5Title,
-  10: level5,
-  11: partyModeTitle,
-  12: partyMode,
+  0: homePage,
+  1: learningMode,
+  2: level1Title,
+  3: level1,
+  4: level2Title,
+  5: level2,
+  6: level3Title,
+  7: level3,
+  8: level4Title,
+  9: level4,
+  10: level5Title,
+  12: level5,
+  13: partyModeTitle,
+  14: partyMode,
 };
 
 
@@ -28,22 +29,51 @@ export default function levels(levelNum, ctx, keypoints) {
 
 export function getCurrentLevel() {
   console.log(counter.getScore());
-  return Math.ceil((counter.getScore())/10);
+  return Math.ceil((counter.getScore()-1)/10);
 }
 
-export function level0(ctx, keypoint) {
-  titles.darkBackground(ctx);
-  titles.screenTitle(ctx, 100, 150, 'CHOOSE LEARNING MODE', 100);
-  titles.screenText(ctx, 500, 700, 'JUMP TO BEGIN', 50);
+export function level0(ctx, keypoints) {
+  const {height, width} = track.videoDimensions();
 
-  counter.incrementScore();
+  const music = document.getElementById('audio4');
+  music.play();
+
+  titles.darkBackground(ctx);
+  titles.screenTitle(ctx, 450, 150, `You've unlocked:`, 80);
+  titles.screenTitle(ctx, 400, 300, `PARTY MODE`, 120);
+
+  titles.screenText(ctx, width/7, height*.75, 'SLOW', 50);
+  titles.screenText(ctx, width*(.43), height*.75, 'CLASSIC', 50);
+  titles.screenText(ctx, width*(.77), height*.75, 'POP', 50);
+
+  titles.screenText(ctx, 450, height*.90, '- chose your music -', 60);
+
+
+  track.trackSpot(ctx, keypoints, width/5, height*.6, 50, 'rgb(255, 255, 255)', 'rgb(86, 255, 184)', 2);
+  track.trackSpot(ctx, keypoints, width/2, height*.6, 50, 'rgb(255, 255, 255)', 'rgb(86, 255, 184)', 2);
+  track.trackSpot(ctx, keypoints, width*(4/5), height*.6, 50, 'rgb(255, 255, 255)', 'rgb(86, 255, 184)', 2);
+}
+
+
+export function homePage(ctx, keypoints ) {
+    const {height, width} = track.videoDimensions();
+
+    titles.darkBackground(ctx);
+    titles.screenTitle(ctx, 200, 250, 'algoRhythmic', 200);
+    titles.screenTitle(ctx, 500, 450, 'Salsa', 200);
+    titles.screenText(ctx, 300, height-(height/6), '---- jump above this line to begin ----', 50);
+
+    track.trackJump(ctx, keypoints);
+    track.trackSpot(ctx, keypoints, width*.89, height*.28, 20, 'rgb(255, 255, 255, .05)', 'rgb(86, 255, 184)', 2);
 }
 export function learningMode(ctx, keypoints) {
   const {height, width} = track.videoDimensions();
 
+  const music = document.getElementById('audio4');
+  music.play();
+
   titles.darkBackground(ctx);
-  titles.screenTitle(ctx, 100, 150, 'CHOOSE LEARNING MODE', 100);
-  titles.screenText(ctx, 500, 700, 'JUMP TO BEGIN', 50);
+  titles.screenTitle(ctx, 80, 150, 'CHOOSE A LEARNING MODE', 100);
 
   titles.screenText(ctx, width/8, height/2.2, '100% Human', 42);
   titles.screenText(ctx, width/2.5, height/2.2, 'Synthesis Mode', 42);
@@ -51,10 +81,9 @@ export function learningMode(ctx, keypoints) {
 
 
   drawBar(ctx, [height/1.8, width/6], [height/1.8, width*(5/6)], 'rgb(255, 255, 255)');
-  track.trackSpot(ctx, keypoints, width/5, height/1.8, 50, 'rgb(255, 255, 255)', 'rgb(86, 255, 184)', 0);
-  track.trackSpot(ctx, keypoints, width/2, height/1.8, 50, 'rgb(255, 255, 255)', 'rgb(86, 255, 184)', 0);
-  track.trackSpot(ctx, keypoints, width*(4/5), height/1.8, 50, 'rgb(255, 255, 255)', 'rgb(86, 255, 184)', 0);
-  // track.trackJump(ctx, keypoints);
+  track.trackSpot(ctx, keypoints, width/5, height/1.8, 50, 'rgb(255, 255, 255)', 'rgb(86, 255, 184)', 2);
+  track.trackSpot(ctx, keypoints, width/2, height/1.8, 50, 'rgb(255, 255, 255)', 'rgb(86, 255, 184)', 2);
+  track.trackSpot(ctx, keypoints, width*(4/5), height/1.8, 50, 'rgb(255, 255, 255)', 'rgb(86, 255, 184)', 2);
 }
 
 export function partyModeTitle(ctx, keypoints) {
@@ -116,11 +145,11 @@ export function level2(ctx, keypoints) {
   titles.levelTitle(ctx, 2, 'Turn and face the red dot. Reach out and touch it.');
 
   // objective: touch the spot
-  track.trackSpot(ctx, keypoints, width/4, height/2, 60);
+  track.trackSpot(ctx, keypoints, width/4, height*(3/4), 60);
 };
 
 export function level3(ctx, keypoints) {
-  titles.levelTitle(ctx, 3, 'Step to the left');
+  titles.levelTitle(ctx, 3, 'Left foot forward');
 
   const {height, width} = track.videoDimensions();
   const midpoint = width/2;
@@ -138,7 +167,7 @@ export function level3(ctx, keypoints) {
 }
 
 export function level4(ctx, keypoints) {
-  titles.levelTitle(ctx, 4, 'Step to the right');
+  titles.levelTitle(ctx, 4, 'Right foot back');
 
   const {height, width} = track.videoDimensions();
   const midpoint = width/2;
