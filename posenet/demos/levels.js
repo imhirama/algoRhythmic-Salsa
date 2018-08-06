@@ -5,12 +5,14 @@ import * as track from './trackingMovements';
 import * as titles from './titles';
 
 const levelFunctions = {
-  0: learningMode,
+  0: level0,
+  999: learningMode,
   1: level1Title,
   2: level1,
   3: level2Title,
   4: level2,
-  // 5: level5,
+  // 5: level3Title,
+  // 6: level3,
 };
 
 
@@ -37,7 +39,34 @@ export function level0(ctx, keypoint) {
   titles.screenTitle(ctx, 350, 300, 'LEVEL TWO');
   titles.screenText(ctx, 400, 475, 'Turn left 90 degrees.', 65);
   titles.screenText(ctx, 290, 555, 'Reach out and touch the red dot.');
-  titles.screenText(ctx, 220, 675, 'Remain facing this direction for all other levels!', 45);
+  titles.screenText(ctx, 320, 675, 'Face this direction for all other levels!', 45);
+
+}
+export function partyTimeTitle(ctx, keypoint) {
+  titles.darkBackground(ctx);
+  titles.screenTitle(ctx, 300, 400, 'PARTY TIME');
+  titles.screenText(ctx, 80, 555, `Choose your music and start dancing!`, 70);
+
+  counter.incrementScore();
+}
+export function levelFiveTitle(ctx, keypoint) {
+  titles.darkBackground(ctx);
+  titles.screenTitle(ctx, 350, 400, 'LEVEL FIVE');
+  titles.screenText(ctx, 150, 555, `Put it all together - full basic step!`, 70);
+
+  counter.incrementScore();
+}
+export function level4Title(ctx, keypoint) {
+  titles.darkBackground(ctx);
+  titles.screenTitle(ctx, 350, 400, 'LEVEL FOUR');
+  titles.screenText(ctx, 60, 555, `Second half of the basic step - let's go!`, 70);
+
+  counter.incrementScore();
+}
+export function level3Title(ctx, keypoint) {
+  titles.darkBackground(ctx);
+  titles.screenTitle(ctx, 350, 400, 'LEVEL THREE');
+  titles.screenText(ctx, 220, 555, 'Stay facing left - time to salsa!', 70);
 
   counter.incrementScore();
 }
@@ -46,7 +75,7 @@ export function level2Title(ctx, keypoint) {
   titles.screenTitle(ctx, 350, 300, 'LEVEL TWO');
   titles.screenText(ctx, 400, 475, 'Turn left 90 degrees.', 65);
   titles.screenText(ctx, 290, 555, 'Reach out and touch the red dot.');
-  titles.screenText(ctx, 220, 675, 'Remain facing this direction for all other levels!', 45);
+  titles.screenText(ctx, 320, 675, 'Face this direction for all other levels!', 45);
 
   counter.incrementScore();
 }

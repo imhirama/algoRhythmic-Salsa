@@ -4,9 +4,9 @@ export const resetScore = () => {
   score.innerHTML=0;
 };
 
-export const incrementScore = () => {
+export const incrementScore = (amount=1) => {
   const score = document.getElementById('score');
-  score.innerHTML++;
+  score.innerHTML = +score.innerHTML+amount;
 };
 
 export const getScore = () => {
