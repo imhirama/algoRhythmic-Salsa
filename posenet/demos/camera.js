@@ -277,7 +277,7 @@ function detectPoseInRealTime(video, net) {
         // trackFeet(ctx, keypoints);
         // trackJump(ctx, keypoints);
         // trackInFrame(ctx, keypoints);
-        trackSpot(ctx, keypoints, 300, 300);
+        // trackSpot(ctx, keypoints, 300, 300);
         levels(getCurrentLevel(), ctx, keypoints);
         // helloWorld(ctx);
         // paint(ctx, keypoints, 800, 300, 500, 200);
@@ -320,7 +320,7 @@ export async function bindPage() {
   // setupFPS();
   detectPoseInRealTime(video, net);
   // resetScore();
-  startTimer();
+  // startTimer();
 }
 
 navigator.getUserMedia = navigator.getUserMedia ||
