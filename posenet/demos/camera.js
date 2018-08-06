@@ -99,7 +99,7 @@ const guiState = {
   output: {
     showVideo: true,
     showSkeleton: true,
-    showPoints: true,
+    showPoints: false,
   },
   net: null,
 };

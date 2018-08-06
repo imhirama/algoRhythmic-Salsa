@@ -16,9 +16,9 @@ const levelFunctions = {
   8: level4Title,
   9: level4,
   10: level5Title,
-  12: level5,
-  13: partyModeTitle,
-  14: partyMode,
+  11: level5,
+  12: partyModeTitle,
+  13: partyMode,
 };
 
 
@@ -32,11 +32,13 @@ export function getCurrentLevel() {
   return Math.ceil((counter.getScore()-1)/10);
 }
 
-export function level0(ctx, keypoints) {
+export function partyModeTitle(ctx, keypoints) {
   const {height, width} = track.videoDimensions();
 
-  const music = document.getElementById('audio4');
-  music.play();
+  const music2 = document.getElementById('audio2');
+  music2.play();
+  const music1 = document.getElementById('audio1');
+  music1.pause();
 
   titles.darkBackground(ctx);
   titles.screenTitle(ctx, 450, 150, `You've unlocked:`, 80);
@@ -69,8 +71,10 @@ export function homePage(ctx, keypoints ) {
 export function learningMode(ctx, keypoints) {
   const {height, width} = track.videoDimensions();
 
-  const music = document.getElementById('audio4');
-  music.play();
+  const music1 = document.getElementById('audio1');
+  music1.pause();
+  const music4 = document.getElementById('audio4');
+  music4.play();
 
   titles.darkBackground(ctx);
   titles.screenTitle(ctx, 80, 150, 'CHOOSE A LEARNING MODE', 100);
@@ -86,13 +90,7 @@ export function learningMode(ctx, keypoints) {
   track.trackSpot(ctx, keypoints, width*(4/5), height/1.8, 50, 'rgb(255, 255, 255)', 'rgb(86, 255, 184)', 2);
 }
 
-export function partyModeTitle(ctx, keypoints) {
-  titles.darkBackground(ctx);
-  titles.screenTitle(ctx, 300, 400, 'PARTY MODE');
-  titles.screenText(ctx, 80, 555, `Choose your music and start dancing!`, 70);
 
-  counter.incrementScore();
-}
 export function level5Title(ctx, keypoints) {
   titles.darkBackground(ctx);
   titles.screenTitle(ctx, 350, 400, 'LEVEL FIVE');
@@ -145,7 +143,7 @@ export function level2(ctx, keypoints) {
   titles.levelTitle(ctx, 2, 'Turn and face the red dot. Reach out and touch it.');
 
   // objective: touch the spot
-  track.trackSpot(ctx, keypoints, width/4, height*(3/4), 60);
+  track.trackSpot(ctx, keypoints, width/4, height*(1/3), 60);
 };
 
 export function level3(ctx, keypoints) {
@@ -187,6 +185,11 @@ export function level4(ctx, keypoints) {
 export function level5(ctx, keypoints) {
   titles.levelTitle(ctx, 5, 'Full basic step!');
 
+  const music1 = document.getElementById('audio1');
+  music1.play();
+  const music4 = document.getElementById('audio4');
+  music4.pause();
+
   const {height, width} = track.videoDimensions();
   const midpoint = width/2;
   const feetPosition = track.feetPosition(ctx, keypoints);
@@ -195,7 +198,7 @@ export function level5(ctx, keypoints) {
   drawBar(ctx, [0, midpoint+width/10], [height, midpoint+width/10], 'black');
 
   // objective: follow pattern of full basic step
-  const goal = ['right', 'left'];
+  const goal = ['right', 'left', 'center'];
   if (goal.includes(feetPosition.position)) {
     feetPosition.colorBlock();
     counter.incrementScore(.5);
@@ -204,7 +207,12 @@ export function level5(ctx, keypoints) {
 
 
 export function partyMode(ctx, keypoints) {
-  counter.resetScore();
+
+  const music2 = document.getElementById('audio2');
+  music2.pause();
+  const music3 = document.getElementById('audio3');
+  music3.play();
+
   track.trackFeet(ctx, keypoints);
   const {height, width} = track.videoDimensions();
   drawPoint(ctx, width*Math.random(), height*Math.random(), 100*Math.random(), `rgba(${225*Math.random()}, ${225*Math.random()}, ${225*Math.random()}, ${1*Math.random()})`);
