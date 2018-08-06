@@ -22,7 +22,7 @@ import {trackHands, trackFeet, trackSteps, trackFeetTogether, trackHips, videoDi
 import {resetScore, startTimer, getScore, getTime} from './counter';
 import levels, {getCurrentLevel} from './levels';
 
-const videoWidth = 1400; // original: 600
+const videoWidth = 1425; // original: 600
 const videoHeight = 750; // original: 500
 const stats = new Stats();
 
@@ -78,7 +78,7 @@ async function loadVideo() {
 }
 
 const guiState = {
-  algorithm: 'multi-pose',
+  algorithm: 'single-pose',
   input: {
     mobileNetArchitecture: isMobile() ? '0.50' : '0.75',
     outputStride: 16,
@@ -157,7 +157,7 @@ function setupGui(cameras, net) {
   // nms Radius: controls the minimum distance between poses that are returned
   // defaults to 20, which is probably fine for most use cases
   multi.add(guiState.multiPoseDetection, 'nmsRadius').min(0.0).max(40.0);
-  single.open(); // changed from multi.open()
+  multi.open();
 
   let output = gui.addFolder('Output');
   output.add(guiState.output, 'showVideo');

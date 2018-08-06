@@ -167,6 +167,7 @@ export const trackJump = (ctx, keypoints) => {
       'rgba(215, 180, 54, 0.93)',
       0, barHeight
     );
+    incrementScore(1);
   }
 };
 
@@ -190,7 +191,7 @@ export const trackSteps = (ctx, keypoints) => {
 };
 
 // track spot (is a hand touching a specific spot)
-export function trackSpot(ctx, keypoints, spotX, spotY, r=50, color='rgba(236, 23, 48, 0.66)', colorHover='rgb(236, 23, 48)') {
+export function trackSpot(ctx, keypoints, spotX, spotY, r=50, color='rgba(236, 23, 48, 0.66)', colorHover='rgb(236, 23, 48)', increment=1) {
   const leftHandY = keypoints[9].position.y;
   const rightHandY = keypoints[10].position.y;
   const leftHandX = keypoints[9].position.x;
@@ -206,7 +207,7 @@ export function trackSpot(ctx, keypoints, spotX, spotY, r=50, color='rgba(236, 2
     || ((Math.abs(noseX - spotX) < r) && (Math.abs(noseY - spotY) < r))
   ) {
     drawPoint(ctx, spotX, spotY, r, colorHover);
-    incrementScore();
+    incrementScore(increment);
   }
   ;
 }
