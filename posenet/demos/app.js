@@ -12,9 +12,9 @@ if(process.env.NODE_ENV === 'production'){
 
 app.get('/', (req, res)=>{
     if(process.env.NODE_ENV === 'production'){
-        res.sendFile(path.join(__dirname+'/dist/index.html'));
+        res.sendFile(path.join(__dirname+'/dist/camera.html'));
     } else {
-        res.sendFile(path.join(__dirname+'/public/index.html'));
+        res.sendFile(path.join(__dirname+'/public/camera.html'));
     }
 
 })
