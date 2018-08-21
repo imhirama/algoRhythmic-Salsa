@@ -12,4 +12,4 @@ The deployed version of this prototype can be found at https://algorhythmic-sals
 
 ## Source
 
-This repo was forked from Google's TensorFlow.js pretrained models repo. The code unique to this repository can be found in the 
+This repo was forked from Google's TensorFlow.js pretrained models repo. The code unique to this repository can be found in the posenet folder.
