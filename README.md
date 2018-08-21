@@ -9,3 +9,7 @@ A demonstration video can be viewed at https://youtu.be/pv9Z2g6wRP4
 ## Deployed Version
 
 The deployed version of this prototype can be found at https://algorhythmic-salsa.herokuapp.com/
+
+## Source
+
+This repo was forked from Google's TensorFlow.js pretrained models repo. The code unique to this repository can be found in the 
